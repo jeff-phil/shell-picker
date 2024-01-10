@@ -14,7 +14,7 @@ The `shell-picker` universal command can be configured and used by iTerm2 as the
 
 Any parameters passed to `shell-picker` are passed to the real shell being run. However, if `-v` or `--verbose` is passed to `shell-picker`, then it will print the running system architecture to `stdout`. Since zsh outputs a lot of information with `-v` or `--verbose` parameter, it is best to redirect `stderr` to `/dev/null` if not interested: `shell-picker -v 2>/dev/null`.
 
-## Installation of Shell Picker:
+## Installation of Shell Picker
 
 1. Download the code either by grabbing the source zip and putting in directory of your choice, or cloning the git repository.
 2. Ensure that minimal development tools such as ***xcode command line tools*** are installed.
