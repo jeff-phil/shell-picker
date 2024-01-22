@@ -111,9 +111,18 @@ int main(int argc, char *argv[]) {
         fclose(file);
     }
 
+    // Pick appropriate shell based on the machine type (x86_64 or arm64).
+    char shell_current[MAX_PATH_LENGTH] = "zsh";
+    strcpy(shell_current, u.machine[0] == 'x' ? shell_x86_64 : shell_arm64);
+
+    // Set the SHELL environment variable, else shell-picker is used.
+    if (setenv("SHELL", shell_current, 1) != 0) {
+        perror("Error setting SHELL environment variable");
+    }
+
     char fullCmd[MAX_PATH_LENGTH] = {0};
     snprintf(fullCmd, sizeof(fullCmd), "%s %s",
-             u.machine[0] == 'x' ? shell_x86_64 : shell_arm64,
+             shell_current,
              args);
 
     system(fullCmd);
