@@ -1,0 +1,47 @@
+name: "[shell-picker] Release"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PACKAGE_NAME: shell-picker
+  PACKAGE_VERSION: "0.1.0"
+  PYTHON_VERSION: "3.12"
+  
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: "Make"
+      run: make
+#    - name: make check
+#      run: make check
+    - name: "Release"
+      run: |
+    - name: "Package release"
+      run: |
+          ARCHIVE_FILE=shell-picker-v${{ env.PACKAGE_VERSION }}-universal-apple-darwin.tar.gz
+          mkdir -p target/shell-picker
+          cp shell-picker.conf target/shell-picker/shell-picker.conf.example
+          cp LICENSE target/shell-picker/LICENSE
+          cp build/shell-picker target/shell-picker/shell-picker
+          tar czvf $ARCHIVE_FILE -C target shell-picker
+          shasum -a 256 $ARCHIVE_FILE > $ARCHIVE_FILE.sha256
+    - name: "Upload binary"
+      uses: actions/upload-artifact@v4
+      with:
+          name: "shell-picker-rel-v${{ env.PACKAGE_VERSION }}"
+          path: |
+            *.tar.gz
+            *.sha256
+            

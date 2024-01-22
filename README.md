@@ -14,7 +14,7 @@ The `shell-picker` universal command can be configured and used by iTerm2 as the
 
 Any parameters passed to `shell-picker` are passed to the real shell being run. However, if `-v` or `--verbose` is passed to `shell-picker`, then it will print the running system architecture to `stdout`. Since zsh outputs a lot of information with `-v` or `--verbose` parameter, it is best to redirect `stderr` to `/dev/null` if not interested: `shell-picker -v 2>/dev/null`.
 
-## Installation of Shell Picker:
+## Installation of Shell Picker
 
 1. Download the code either by grabbing the source zip and putting in directory of your choice, or cloning the git repository.
 2. Ensure that minimal development tools such as ***xcode command line tools*** are installed.
@@ -25,17 +25,21 @@ Any parameters passed to `shell-picker` are passed to the real shell being run. 
 7. Install iTerm2 either directly from [iTerm2 website](https://iterm2.com/), or through Homebrew `brew install iterm2`.
 8. From `/Applications` directory, copy `iTerm2.app` to `iTerm2_x86_64.app`.
 9. In `Finder`, highlight `iTerm2_x86_64.app` that was just copied and ***Get Info*** either from the menu, or using `⌘+i` shortcut. Only do this for `iTerm2_x86_64.app` and *not* `iTerm2.app`.
+
+    <p align="center">
+      <img src="README_images/iterm_config.png" alt="iTerm2 App Setup" width="400"/>
+    </p>
     
-    ![iTerm2 App Setup screenshot](./README_images/iterm_config.png "iTerm2 App Setup")
+11. In the Info dialog, check ***Open using Rosetta*** checkbox.
+12. Open `iTerm2.app`.
+13. In ***Settings*** (`⌘+,`), configure the default or desired profile in iTerm2 to use `shell-picker` by setting the full path for `shell-picker` in the ***Command*** section as a ***Custom Shell*** (or ***Command*** drop-down option).
     
-10. In the Info dialog, check ***Open using Rosetta*** checkbox.
-11. Open `iTerm2.app`.
-12. In ***Settings*** (`⌘+,`), configure the default or desired profile in iTerm2 to use `shell-picker` by setting the full path for `shell-picker` in the ***Command*** section as a ***Custom Shell*** (or ***Command*** drop-down option).
-    
-    ![iTerm2 Profile Setup screenshot](./README_images/iterm_config-2.png "iTerm2 Profile Setup")
+    <p align="center">
+      <img src="README_images/iterm_config-2.png" alt="iTerm2 Profile Setup screenshot" width="700"/>
+    </p>
     
     Since the same iTerm2 Profiles are used for both copies of iTerm2*.app, then only need to configure `shell-picker` once.
-13. Completely stop all instances and restart iTerm2 (including any background `iTerm2Server` programs) or may get error starting.
+14. Completely stop all instances and restart iTerm2 (including any background `iTerm2Server` programs) or may get error starting.
 
 After validating, and configuring your .zshrc for either `arm64` and `x86_64`, finish by installing extra tooling, like Homebrew and necessary packages, in the `x86_64` shell.  Luckily Homebrew uses separate directories and installation instances between the two architectures: `/opt/homebrew` for Apple Silicon `arm64` and `/usr/local` for macOS Intel `x86_64`.
 
